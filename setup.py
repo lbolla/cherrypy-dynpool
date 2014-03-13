@@ -36,7 +36,7 @@ setup_args = dict(
     cmdclass={'test': pytest_test},
     install_requires=[
         "Cherrypy>=3.2,<4.0",
-        "dynpool>=1.0.1,<2.0"
+        "dynpool>=1.0.2,<2.0"
     ],
     classifiers=[
         'Development Status :: 5 - Production/Stable',
