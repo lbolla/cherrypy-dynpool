@@ -1,3 +1,4 @@
+import cherrypy
 from cherrypy.wsgiserver import ThreadPool
 from cherrypy.process.plugins import Monitor
 from dynpool import DynamicPoolResizer
@@ -14,6 +15,10 @@ ThreadPool.get_pool_resizer = get_pool_resizer
 
 class ThreadPoolMonitor(Monitor):
 
+    MINSPARE = 5
+    MAXSPARE = 15
+    SHRINKFREQ = 5
+
     def __init__(self, bus):
         self._run = lambda: None
         super(ThreadPoolMonitor, self).__init__(bus, self.run, frequency=1)
@@ -21,7 +26,13 @@ class ThreadPoolMonitor(Monitor):
     def run(self):
         self._run()
 
-    def configure(self, thread_pool, minspare, maxspare, shrinkfreq, logger):
+    def configure(self, thread_pool, logger=None):
+        minspare = cherrypy.config.get(
+            'server.thread_pool_minspare', self.MINSPARE)
+        maxspare = cherrypy.config.get(
+            'server.thread_pool_maxspare', self.MAXSPARE)
+        shrinkfreq = cherrypy.config.get(
+            'server.thread_pool_shrink_frequency', self.SHRINKFREQ)
         resizer = thread_pool.get_pool_resizer(
             minspare=minspare,
             maxspare=maxspare,

@@ -25,7 +25,7 @@ class pytest_test(test):
 
 setup_args = dict(
     name='cherrypy-dynpool',
-    version='1.0.1',
+    version='2.0',
     url='https://tabo.pe/projects/cherrypy-dynpool/',
     author='Gustavo Picon',
     author_email='tabo@tabo.pe',

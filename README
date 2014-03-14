@@ -14,15 +14,19 @@ Usage::
 
     cherrypy.engine.threadpool_monitor = ThreadPoolMonitor(cherrypy.engine)
     cherrypy.engine.threadpool_monitor.subscribe()
+    cherrypy.config.update({
+        'server.thread_pool': 5,
+        'server.thread_pool_max': -1,
+        'server.thread_pool_minspare': 5,
+        'server.thread_pool_maxspare': 15,
+        'server.thread_pool_frequency': 2,
+        'server.thread_pool_shrink_frequency': 5,
+    })
 
     ...
 
     cherrypy.engine.start()
-    minspare = 5
-    maxspare = 40
-    shrink_frequency = 10
     cherrypy.engine.threadpool_monitor.configure(
-        cherrypy.server.httpserver.requests,
-        minspare, maxspare, shrink_frequency,
-        cherrypy.log
+        thread_pool=cherrypy.server.httpserver.requests,
+        logger=cherrypy.log
     )
