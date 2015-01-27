@@ -20,6 +20,7 @@ Usage::
         'server.thread_pool_minspare': 5,
         'server.thread_pool_maxspare': 15,
         'server.thread_pool_frequency': 2,
+        'server.thread_pool_log_frequency': 1,
         'server.thread_pool_shrink_frequency': 5,
     })
 
