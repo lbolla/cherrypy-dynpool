@@ -25,7 +25,7 @@ class pytest_test(test):
 
 setup_args = dict(
     name='cherrypy-dynpool',
-    version='2.0.1',
+    version='2.1',
     url='https://tabo.pe/projects/cherrypy-dynpool/',
     author='Gustavo Picon',
     author_email='tabo@tabo.pe',
@@ -36,7 +36,7 @@ setup_args = dict(
     cmdclass={'test': pytest_test},
     install_requires=[
         "Cherrypy>=3.2,<4.0",
-        "dynpool>=1.0.3,<2.0"
+        "dynpool>=2.0,<3.0"
     ],
     classifiers=[
         'Development Status :: 5 - Production/Stable',
