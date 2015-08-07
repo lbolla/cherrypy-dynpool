@@ -37,7 +37,7 @@ class ThreadPoolMonitor(Monitor):
             minspare=minspare,
             maxspare=maxspare,
             shrinkfreq=shrinkfreq,
-            logger=logger or (lambda: None)
+            logger=logger or (lambda msg: None)
         )
         self._run = resizer.run
 
